@@ -2,10 +2,14 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pizzeria Bella Napoli</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet" />
   <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
       font-family: 'Open Sans', sans-serif;
@@ -13,86 +17,202 @@
       color: #333;
     }
 
+    /* Header */
     header {
-      background-color: #d62828;
-      color: white;
-      padding: 2em 1em;
+      position: relative;
+      background: linear-gradient(90deg, #009246 33%, #fff 33%, #fff 66%, #ce2b37 66%);
+      padding: 3rem 1rem;
       text-align: center;
       font-family: 'Pacifico', cursive;
+      color: #fff;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
+    header .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+      flex-grow: 1;
+    }
+
+    header p {
+      font-size: 1.4rem;
+      margin: 0.3rem 0 0;
+      color: #f0f0f0;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    /* Logo */
+    header img.logo {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      width: 150px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      background: #fff;
+      padding: 0.25rem;
+    }
+
+    /* Navigation */
     nav {
       background-color: #f77f00;
       display: flex;
       justify-content: center;
-      gap: 2em;
-      padding: 1em;
+      gap: 2.5rem;
+      padding: 1rem 0;
+      font-weight: bold;
+      font-size: 1.1rem;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      transition: color 0.3s ease;
     }
 
-    section {
-      padding: 2em;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
+    nav a:hover,
+    nav a:focus {
       color: #d62828;
     }
 
+    /* Sections */
+    section {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    section h2 {
+      color: #d62828;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      font-family: 'Pacifico', cursive;
+    }
+
+    /* Menu Grid */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2em;
-      margin-top: 2em;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
     }
 
     .pizza-card {
-      background-color: white;
+      background: white;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
     }
 
     .pizza-card:hover {
-      transform: scale(1.02);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
+    /* Animation pizza image */
     .pizza-card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
+      display: block;
+      border-bottom: 3px solid #d62828;
+      animation: swing 4s ease-in-out infinite;
+      transform-origin: 50% 90%;
+    }
+
+    /* Petite variation de timing pour chaque image (optionnel) */
+    .pizza-card:nth-child(2) img {
+      animation-delay: 1s;
+    }
+    .pizza-card:nth-child(3) img {
+      animation-delay: 2s;
+    }
+    .pizza-card:nth-child(4) img {
+      animation-delay: 3s;
     }
 
     .pizza-card h3 {
-      margin: 0.5em 1em 0;
+      margin: 0.75rem 1rem 0.25rem;
       color: #003049;
+      font-size: 1.25rem;
     }
 
     .pizza-card p {
-      margin: 0.5em 1em 1em;
+      margin: 0 1rem 1rem;
+      font-size: 1rem;
+      color: #555;
     }
 
+    /* About & Contact text */
+    #about p,
+    #contact p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #444;
+      text-align: center;
+    }
+
+    /* Footer */
     footer {
       background-color: #003049;
       color: white;
       text-align: center;
-      padding: 2em;
-      margin-top: 3em;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.4rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .logo {
+        width: 120px;
+      }
+    }
+
+    /* Keyframes swing */
+    @keyframes swing {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-3deg); }
+      100% { transform: rotate(0deg); }
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>🍕 Bella Napoli</h1>
-    <p>La vraie pizza italienne, cuite au feu de bois</p>
+    <div class="container">
+      <div>
+        <h1>🍕 Bella Napoli</h1>
+        <p>La vraie pizza italienne, cuite au feu de bois</p>
+      </div>
+      <img src="https://img.freepik.com/vecteurs-premium/logo-pizza-italienne-pizza-chef-tenant-pizza_850580-18.jpg?semt=ais_hybrid&w=740" alt="Logo Bella Napoli" class="logo" />
+    </div>
   </header>
 
   <nav>
@@ -105,22 +225,22 @@
     <h2>Nos Pizzas</h2>
     <div class="menu-grid">
       <div class="pizza-card">
-        <img src="https://media.istockphoto.com/id/1168754685/fr/photo/margarita-de-pizza-avec-la-vue-supérieure-de-fromage-disolement-sur-le-fond-blanc.jpg?s=612x612&w=0&k=20&c=9RHfY1eek9drWa4dxJJEYdIiQ9fS2chxNdPQ9AUxJJg=" alt="Pizza Margherita">
+        <img src="https://media.istockphoto.com/id/1168754685/fr/photo/margarita-de-pizza-avec-la-vue-supérieure-de-fromage-disolement-sur-le-fond-blanc.jpg?s=612x612&w=0&k=20&c=9RHfY1eek9drWa4dxJJEYdIiQ9fS2chxNdPQ9AUxJJg=" alt="Pizza Margherita" />
         <h3>Margherita - 9€</h3>
         <p>Tomate, mozzarella, basilic frais</p>
       </div>
       <div class="pizza-card">
-        <img src="https://source.unsplash.com/400x300/?pizza,quattroformaggi" alt="Pizza 4 Fromages">
+        <img src="https://source.unsplash.com/400x300/?pizza,quattroformaggi" alt="Pizza 4 Fromages" />
         <h3>4 Fromages - 12€</h3>
         <p>Gorgonzola, mozzarella, chèvre, parmesan</p>
       </div>
       <div class="pizza-card">
-        <img src="https://source.unsplash.com/400x300/?pizza,reine" alt="Pizza Reine">
+        <img src="https://source.unsplash.com/400x300/?pizza,reine" alt="Pizza Reine" />
         <h3>Reine - 11€</h3>
         <p>Jambon, champignons, mozzarella</p>
       </div>
       <div class="pizza-card">
-        <img src="https://source.unsplash.com/400x300/?pizza,calzone" alt="Pizza Calzone">
+        <img src="https://source.unsplash.com/400x300/?pizza,calzone" alt="Pizza Calzone" />
         <h3>Calzone - 13€</h3>
         <p>Pizza pliée avec jambon, œuf, fromage</p>
       </div>
@@ -129,16 +249,16 @@
 
   <section id="about">
     <h2>À propos de nous</h2>
-    <p style="max-width: 700px; margin: auto; text-align: center;">
+    <p>
       Bella Napoli, c’est la passion de la cuisine italienne authentique. Nos pizzas sont préparées avec amour et cuites au feu de bois dans un four traditionnel.
     </p>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p style="text-align: center;">
-      📍 123 Rue de la Pizza, 75000 Paris<br>
-      📞 01 23 45 67 89<br>
+    <p>
+      📍 123 Rue de la Pizza, 75000 Paris<br />
+      📞 01 23 45 67 89<br />
       📧 contact@bellanapoli.fr
     </p>
   </section>
@@ -146,5 +266,6 @@
   <footer>
     &copy; 2025 Pizzeria Bella Napoli - Tous droits réservés
   </footer>
+
 </body>
 </html>
